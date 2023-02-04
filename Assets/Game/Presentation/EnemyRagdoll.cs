@@ -13,6 +13,7 @@ public class EnemyRagdoll : MonoBehaviour
     [SerializeField] private List<HingeJoint2D> joints;
     [SerializeField] private List<Rigidbody2D> rigidBodies;
     [SerializeField] private List<LimbSolver2D> limbSolvers;
+    [SerializeField] private Collider2D nonRagdollCollider;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class EnemyRagdoll : MonoBehaviour
     private void ToggleRagdoll(bool ragdollOn)
     {
         animator.enabled = !ragdollOn;
+        nonRagdollCollider.enabled = !ragdollOn;
 
         foreach (var col in colliders)
             col.enabled = ragdollOn;
