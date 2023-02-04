@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayButton : MonoBehaviour
 {
-	public void Play()
+	public void PlayGame()
 	{
 		SceneManager.LoadScene("AndrewScene");
 	}
