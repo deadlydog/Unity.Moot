@@ -1,19 +1,18 @@
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 
 namespace Assets.Game.Presentation
 {
 	public class TrunkPresenter : MonoBehaviour
 	{
-		// Start is called before the first frame update
 		void Start()
 		{
+			var spriteSkin = GetComponent<SpriteSkin>();
 
-		}
-
-		// Update is called once per frame
-		void Update()
-		{
-
+			foreach (var boneTransform in spriteSkin.boneTransforms)
+			{
+				boneTransform.parent = transform.parent;
+			}
 		}
 	}
 }
