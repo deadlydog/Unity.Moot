@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt.meta
+guid: 638e500a90d218946b459da3fd5a6030
+timeCreated: 1425440388
+licenseType: Store
+TextScriptImporter:
+=======
+guid: a32cdfe373a64a24694f6789cc10310a
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+>>>>>>> 771ad1b... Built the stickman ragdoll:Assets/Animations.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
