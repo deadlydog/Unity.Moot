@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Game.Presentation
 {
 	public class AngularSpringJoint : MonoBehaviour
 	{
+		public float TorqueCoefficient = 1;
+
 		private Rigidbody2D _rigidbody2d;
 		private float _originalRotation;
 		private Rigidbody2D _connectedRigidbody2d;
@@ -25,7 +25,7 @@ namespace Assets.Game.Presentation
 
 			var rotationDiff = _rigidbody2d.rotation - targetRotation;
 
-			_rigidbody2d.AddTorque(-rotationDiff);
+			_rigidbody2d.AddTorque(TorqueCoefficient * -rotationDiff);
 		}
 	}
 }
