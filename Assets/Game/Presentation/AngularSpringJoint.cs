@@ -32,6 +32,8 @@ namespace Assets.Game.Presentation
 			var rotationDiff = _rigidbody2d.rotation - _originalRotation;
 
 			Debug.Log(rotationDiff);
+
+			_rigidbody2d.AddTorque(-rotationDiff);
 		}
 	}
 }
