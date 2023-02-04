@@ -29,8 +29,6 @@ namespace Assets.Game.Presentation
 			{
 				var overlapCollider = _overlap.First();
 
-				Debug.Log(overlapCollider);
-
 				_dragObject = overlapCollider.gameObject;
 				_dragRididbody = overlapCollider.GetComponentInParent<Rigidbody2D>();
 				_localDragPoint = _dragObject.transform.InverseTransformPoint(mouseWorldPos);
@@ -44,8 +42,6 @@ namespace Assets.Game.Presentation
 			{
 				var dragWorldPos = _dragObject.transform.TransformPoint(_localDragPoint);
 				var dragVector = dragWorldPos - mouseWorldPos;
-
-				Debug.Log(dragVector);
 
 				_dragRididbody.AddForceAtPosition(-1 * dragVector, dragWorldPos);
 			}
