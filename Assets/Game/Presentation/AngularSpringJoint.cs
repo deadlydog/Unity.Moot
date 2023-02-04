@@ -14,24 +14,10 @@ namespace Assets.Game.Presentation
 			_rigidbody2d = GetComponent<Rigidbody2D>();
 			_originalRotation = _rigidbody2d.rotation;
 		}
-
-		// Start is called before the first frame update
-		void Start()
-		{
-
-		}
-
-		// Update is called once per frame
-		void Update()
-		{
-
-		}
-
+		
 		void FixedUpdate()
 		{
 			var rotationDiff = _rigidbody2d.rotation - _originalRotation;
-
-			Debug.Log(rotationDiff);
 
 			_rigidbody2d.AddTorque(-rotationDiff);
 		}
