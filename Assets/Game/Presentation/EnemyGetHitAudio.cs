@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDeathAudio : MonoBehaviour
+public class EnemyGetHitAudio : MonoBehaviour
 {
 	public AudioSource AudioSource;
 	public AudioClip[] AudioClipArray;
 	AudioClip lastClip;
 	public float MinVolume = 0.05f;
-	public float MaxVolume = 0.15f;
+	public float MaxVolume = 0.5f;
 
-	public void PlayEnemyDeathScream()
+	public void PlayEnemyGetHitSound()
 	{
 		AudioSource.PlayOneShot(RandomClip(), Random.Range(MinVolume, MaxVolume));
 	}
-	
+
 	AudioClip RandomClip()
 	{
 		int attempts = 3;

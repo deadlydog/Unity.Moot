@@ -15,6 +15,7 @@ namespace Assets.Game.Presentation
 		private EnemyRagdoll _ragdoll;
 		private Rigidbody2D _rigidbody2d;
 		private EnemyDeathAudio _enemyDeathAudio;
+		private EnemyGetHitAudio _enemyGetHitAudio;
 
 		private bool _isDead = false;
 
@@ -23,6 +24,7 @@ namespace Assets.Game.Presentation
 			_ragdoll = GetComponent<EnemyRagdoll>();
 			_rigidbody2d = GetComponent<Rigidbody2D>();
 			_enemyDeathAudio = GetComponent<EnemyDeathAudio>();
+			_enemyGetHitAudio = GetComponent<EnemyGetHitAudio>();
 		}
 		
 		void OnCollisionEnter2D(Collision2D collision)
@@ -59,6 +61,8 @@ namespace Assets.Game.Presentation
 			{
 				_enemyDeathAudio.PlayEnemyDeathScream();
 			}
+
+			_enemyGetHitAudio.PlayEnemyGetHitSound();
 		}
 	}
 }
