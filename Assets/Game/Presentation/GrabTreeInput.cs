@@ -7,6 +7,8 @@ namespace Assets.Game.Presentation
 	{
 		public LayerMask DragHandleMask;
 
+		public float DragMultiplier = 1;
+
 		private Camera _camera;
 		private Collider2D[] _overlap = new Collider2D[20];
 
@@ -43,7 +45,7 @@ namespace Assets.Game.Presentation
 				var dragWorldPos = _dragObject.transform.TransformPoint(_localDragPoint);
 				var dragVector = dragWorldPos - mouseWorldPos;
 
-				_dragRididbody.AddForceAtPosition(-1 * dragVector, dragWorldPos);
+				_dragRididbody.AddForceAtPosition(-1 * dragVector * DragMultiplier, dragWorldPos);
 			}
 		}
 	}
