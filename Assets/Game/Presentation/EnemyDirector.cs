@@ -13,7 +13,7 @@ namespace Assets.Game.Presentation
 		{
 			public float EnemyMass = 1.0f;
 			public float EnemyRagdollLimbMass = 0.1f;
-			public float EnemySpeed = UnityEngine.Random.Range(50f, 150f);
+			public float EnemySpeed = 100f;
 			public float EnemyScale = 1.0f;
 		}
 
