@@ -26,6 +26,7 @@ namespace Assets.Game.Domain
 
         public void KillEnemy(EnemyIdentifier enemyId)
         {
+            // Debug.Log($"Kill enemy: {enemyId}");
             if (!_enemies.Remove(enemyId))
                 throw new ArgumentException($"{enemyId} doesn't exist");
             

@@ -1,6 +1,8 @@
 using System;
+using Assets.Game.Domain;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace Assets.Game.Presentation
 {
@@ -18,6 +20,12 @@ namespace Assets.Game.Presentation
 		private EnemyGetHitAudio _enemyGetHitAudio;
 
 		private bool _isDead = false;
+		
+		[Inject]
+		public IEnemyCommands EnemyCommands { private get; set; }
+		
+		[Inject]
+		public EnemyParameters Parameters { private get; set; }
 
 		void Awake()
 		{
@@ -40,6 +48,8 @@ namespace Assets.Game.Presentation
 			if (_isDead)
 				return;
 			_isDead = true;
+			
+			EnemyCommands.KillEnemy(Parameters.EnemyId);
 			
 			Observable
 					.Timer(TimeSpan.FromSeconds(RagdollDelaySeconds))
