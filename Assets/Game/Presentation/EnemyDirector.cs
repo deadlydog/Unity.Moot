@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Assets.Game.Domain;
 using UniRx;
 using UnityEngine;
@@ -13,11 +13,13 @@ namespace Assets.Game.Presentation
 		{
 			public float EnemyMass = 1.0f;
 			public float EnemyRagdollLimbMass = 0.1f;
-			public float EnemySpeed = 100.0f;
+			public float EnemySpeed = UnityEngine.Random.Range(50f, 150f);
 			public float EnemyScale = 1.0f;
 		}
 
 		public float SpawnDelaySeconds = 2.0f;
+		public float MinSpawnDelayOffsetSeconds = 0f;
+		public float MaxSpawnDalayOffsetSeconds = 5.0f;
 
 		public EnemyParameters EnemySettings;
 
@@ -31,8 +33,8 @@ namespace Assets.Game.Presentation
 		{
 			var delayTimeSpan = TimeSpan.FromSeconds(SpawnDelaySeconds);
 
-			Observable.Timer(delayTimeSpan, delayTimeSpan)
-				.Subscribe(_ => SpawnAnEnemy())
+			Observable.Timer(TimeSpan.Zero, delayTimeSpan)
+				.Subscribe(_ => Invoke(nameof(SpawnAnEnemy), UnityEngine.Random.Range(MinSpawnDelayOffsetSeconds, MaxSpawnDalayOffsetSeconds)))
 				.AddTo(this);
 		}
 
