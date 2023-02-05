@@ -6,23 +6,27 @@ using Zenject;
 
 namespace Assets.Game.Presentation
 {
-    public class EnemyDirector : MonoBehaviour
-    {
-       [Inject] 
-       public IEnemyCommands EnemyCommands { private get; set; }
-       
-       [Inject]
-       public IEnemyEvents EnemyEvents { private get; set; }
+	public class EnemyDirector : MonoBehaviour
+	{
+		public float SpawnDelaySeconds = 2.0f;
 
-       private void Start()
-       {
-           Observable.NextFrame()
-               .Subscribe(_ => SpawnAnEnemy())
-               .AddTo(this);
-       }
+		[Inject]
+		public IEnemyCommands EnemyCommands { private get; set; }
 
-       public void SpawnAnEnemy()
-           => EnemyCommands.SpawnEnemy(transform.position);
-    }
-    
+		[Inject]
+		public IEnemyEvents EnemyEvents { private get; set; }
+
+		private void Start()
+		{
+			var delayTimeSpan = TimeSpan.FromSeconds(SpawnDelaySeconds);
+
+			Observable.Timer(delayTimeSpan, delayTimeSpan)
+				.Subscribe(_ => SpawnAnEnemy())
+				.AddTo(this);
+		}
+
+		public void SpawnAnEnemy()
+			=> EnemyCommands.SpawnEnemy(transform.position);
+	}
+
 }
