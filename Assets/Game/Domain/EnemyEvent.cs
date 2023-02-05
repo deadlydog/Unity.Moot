@@ -1,31 +1,11 @@
 ﻿namespace Assets.Game.Domain
 {
-    public abstract record EnemyEvent
-    {
-        public record EnemySpawned : EnemyEvent
-        {
-            public EnemySpawned(EnemyIdentifier enemyId, EnemyConfig enemyConfig)
-            {
-                EnemyId = enemyId;
-                EnemyConfig = enemyConfig;
-            }
+	public abstract record EnemyEvent
+	{
+		public record EnemySpawned(EnemyIdentifier EnemyId, EnemyConfig EnemyConfig) : EnemyEvent;
 
-            public EnemyIdentifier EnemyId { get; }
-            public EnemyConfig EnemyConfig { get; }
-        }
+		public record EnemyKilled(EnemyIdentifier EnemyId) : EnemyEvent;
 
-        public record EnemyKilled : EnemyEvent
-        {
-            public EnemyKilled(EnemyIdentifier enemyId)
-            {
-                EnemyId = enemyId;
-            }
-
-            public EnemyIdentifier EnemyId { get; }
-        }
-
-        public record AllEnemiesKilled : EnemyEvent
-        {
-        }
-    }
+		public record AllEnemiesKilled : EnemyEvent;
+	}
 }
