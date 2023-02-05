@@ -7,12 +7,14 @@ namespace Assets.Game.Presentation
 	{
 		void Start()
 		{
+			/*
 			var spriteSkin = GetComponent<SpriteSkin>();
 
 			foreach (var boneTransform in spriteSkin.boneTransforms)
 			{
 				boneTransform.parent = transform.parent;
 			}
+			*/
 		}
 	}
 }

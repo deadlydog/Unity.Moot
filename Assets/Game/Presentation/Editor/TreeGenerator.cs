@@ -24,7 +24,7 @@ namespace Assets.Game.Presentation.Editor
 			Debug.Log($"Build for {trunk}");
 
 			var rigidbody = trunk.GetOrAddComponent<Rigidbody2D>();
-			rigidbody.bodyType = RigidbodyType2D.Static;
+			rigidbody.bodyType = RigidbodyType2D.Kinematic;
 			rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
 
 			var spriteSkin = trunk.GetComponent<SpriteSkin>();
@@ -53,6 +53,13 @@ namespace Assets.Game.Presentation.Editor
 			collider.direction = CapsuleDirection2D.Horizontal;
 			collider.size = new Vector2(1, 0.4f);
 			collider.offset = new Vector2(0.4f, 0);
+
+			foreach (Transform childTransform in branchBone.transform)
+			{
+				var spriteSkin = childTransform.GetComponent<SpriteSkin>();
+				if (spriteSkin != null)
+					BuildTree(childTransform.gameObject);
+			}
 		}
 
 		
