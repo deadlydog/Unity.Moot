@@ -17,16 +17,17 @@ namespace Assets.Game.Presentation.Editor
 			{
 				Debug.Log($"Target = {target}, serializedObject = {serializedObject}");
 
-				var trunk = (target as TrunkPresenter).gameObject;
+				var trunkPresenter = (TrunkPresenter)target;
+				var trunk = trunkPresenter.gameObject;
 
-				BuildTree(trunk);
+				BuildTree(trunk, trunkPresenter.InitialParameters);
 
 				EditorUtility.SetDirty(target);
 				EditorSceneManager.MarkSceneDirty(trunk.scene);
 			}
 		}
 
-		private void BuildTree(GameObject trunk)
+		private void BuildTree(GameObject trunk, BranchParameters branchParams)
 		{
 			Debug.Log($"Build for {trunk}");
 
@@ -38,23 +39,26 @@ namespace Assets.Game.Presentation.Editor
 
 			foreach (var (parentBone, bone) in spriteSkin.boneTransforms.Pairwise())
 			{
-				BuildBranchBone(parentBone.gameObject, bone.gameObject);
+				BuildBranchBone(parentBone.gameObject, bone.gameObject, branchParams);
+
+				branchParams = branchParams.Propagate();
 			}
 		}
 
-		private void BuildBranchBone(GameObject parentBone, GameObject branchBone)
+		private void BuildBranchBone(GameObject parentBone, GameObject branchBone, BranchParameters branchParams)
 		{
 			var rigidbody = branchBone.GetOrAddComponent<Rigidbody2D>();
 			rigidbody.bodyType = RigidbodyType2D.Dynamic;
-			rigidbody.angularDrag = 100;
-			rigidbody.mass = 0.5f;
+			rigidbody.angularDrag = branchParams.AngularDrag;
+			rigidbody.mass = branchParams.Mass;
 			rigidbody.interpolation = RigidbodyInterpolation2D.Interpolate;
 
 			var hinge = branchBone.GetOrAddComponent<HingeJoint2D>();
 			hinge.connectedBody = parentBone.GetComponent<Rigidbody2D>();
+			hinge.autoConfigureConnectedAnchor = false;
 
 			var springJoint = branchBone.GetOrAddComponent<AngularSpringJoint>();
-			springJoint.TorqueCoefficient = 1;
+			springJoint.TorqueCoefficient = branchParams.TorqueCoefficient;
 
 			var collider = branchBone.GetOrAddComponent<CapsuleCollider2D>();
 			collider.direction = CapsuleDirection2D.Horizontal;
@@ -65,7 +69,7 @@ namespace Assets.Game.Presentation.Editor
 			{
 				var spriteSkin = childTransform.GetComponent<SpriteSkin>();
 				if (spriteSkin != null)
-					BuildTree(childTransform.gameObject);
+					BuildTree(childTransform.gameObject, branchParams.ScaleMass(childTransform.localScale.x));
 			}
 		}
 

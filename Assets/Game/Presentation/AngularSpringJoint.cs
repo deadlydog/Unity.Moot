@@ -33,7 +33,7 @@ namespace Assets.Game.Presentation
 				rotationDiff += 360;
 			if (rotationDiff > 180)
 				rotationDiff -= 360;
-
+			
 			_rigidbody2d.AddTorque(TorqueCoefficient * -rotationDiff);
 		}
 	}
