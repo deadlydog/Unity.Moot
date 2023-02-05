@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Assets.Game.Domain;
 using UniRx;
 using UnityEngine;
@@ -53,12 +54,11 @@ namespace Assets.Game.Presentation
 			EnemyCommands.KillEnemy(Parameters.EnemyId);
 			
 			Observable
-					.Timer(TimeSpan.FromSeconds(RagdollDelaySeconds))
-					.Subscribe(_ => _ragdoll.RagdollOn());
+				.Timer(TimeSpan.FromSeconds(RagdollDelaySeconds))
+				.Subscribe(_ => _ragdoll.RagdollOn())
+				.AddTo(this);
 
 			var hitDir = transform.position - collision.transform.position;
-
-			Debug.Log(collision.contacts[0].relativeVelocity);
 
 			_rigidbody2d.AddForceAtPosition(
 				collision.contacts[0].relativeVelocity * HitForce,
@@ -67,7 +67,13 @@ namespace Assets.Game.Presentation
 			
 			Observable
 				.Timer(TimeSpan.FromSeconds(DeathDisappearDelayInSeconds))
-				.Subscribe(_ => Destroy(gameObject));
+				.Subscribe(_ => Destroy(gameObject))
+				.AddTo(this);
+
+			_watchVelocity = true;
+
+			_countdown = 0.5f;
+			_watchVelocity = true;
 
 			// Too many screams are annoying.
 			if (UnityEngine.Random.Range(0f, 1f) < ChanceOfDeathScream)
@@ -76,6 +82,29 @@ namespace Assets.Game.Presentation
 			}
 
 			_enemyGetHitAudio.PlayEnemyGetHitSound();
+		}
+
+		bool _watchVelocity = false;
+		float _countdown = 0.0f;
+
+		private void FixedUpdate()
+		{
+			if (_watchVelocity && (_countdown -= Time.fixedDeltaTime) < 0.0f)
+			{
+				if (_rigidbody2d.velocity.magnitude < 3)
+				{
+					SetLayer(gameObject, 12);
+					_watchVelocity = false;
+				}
+			}
+		}
+
+		private static void SetLayer(GameObject gameObject, int layer)
+		{
+			gameObject.layer = layer;
+
+			for (int i = 0; i < gameObject.transform.childCount; ++i)
+				SetLayer(gameObject.transform.GetChild(i).gameObject, layer);
 		}
 	}
 }

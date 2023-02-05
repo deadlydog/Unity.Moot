@@ -1671,7 +1671,7 @@ MonoBehaviour:
     m_Bits: 2112
   HitForce: 5
   RagdollDelaySeconds: 0
-  DeathDisappearDelayInSeconds: 1.5
+  DeathDisappearDelayInSeconds: 15
   ChanceOfDeathScream: 0.25
 --- !u!1 &5296022664428202755 stripped
 GameObject:
