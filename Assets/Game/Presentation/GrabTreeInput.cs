@@ -37,6 +37,9 @@ namespace Assets.Game.Presentation
 			} 
 			else if (!Input.GetMouseButton(0))
 			{
+				if (_dragObject !=  null && _dragObject.TryGetComponent<AngularSpringJoint>(out var joint))
+					joint.SetOnlyAccelerate();
+				
 				_dragObject = null;
 			}
 
