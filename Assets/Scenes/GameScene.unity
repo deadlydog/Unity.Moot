@@ -677,6 +677,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 844583271, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 844583272, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 297.8126
+      objectReference: {fileID: 0}
+    - target: {fileID: 844583272, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 164.6951
+      objectReference: {fileID: 0}
+    - target: {fileID: 844583272, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -436
+      objectReference: {fileID: 0}
+    - target: {fileID: 844583272, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -101
+      objectReference: {fileID: 0}
     - target: {fileID: 5036129490035748505, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -761,9 +781,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5036129490035748507, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5036129490035748509, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
       propertyPath: m_Name
       value: Game Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703116610708904421, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.63761
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703116610708904421, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.63761
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703116610708904421, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.63761
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703116610708904421, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 53
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
