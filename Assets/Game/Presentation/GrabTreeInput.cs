@@ -13,7 +13,7 @@ namespace Assets.Game.Presentation
 		private Collider2D[] _overlap = new Collider2D[20];
 
 		private GameObject _dragObject = null;
-		private Vector2 _localDragPoint;
+		//private Vector2 _localDragPoint;
 		private Rigidbody2D _dragRididbody;
 
 		void Awake()
@@ -32,20 +32,21 @@ namespace Assets.Game.Presentation
 				var overlapCollider = _overlap.First();
 
 				_dragObject = overlapCollider.gameObject;
-				_dragRididbody = overlapCollider.GetComponentInParent<Rigidbody2D>();
-				_localDragPoint = _dragObject.transform.InverseTransformPoint(mouseWorldPos);
+				_dragRididbody = overlapCollider.GetComponent<TreeGrabTarget>().ClickTarget;
+				//_localDragPoint = _dragObject.transform.InverseTransformPoint(mouseWorldPos);
 			} 
 			else if (!Input.GetMouseButton(0))
 			{
-				if (_dragObject !=  null && _dragObject.TryGetComponent<AngularSpringJoint>(out var joint))
+				if (_dragRididbody != null && _dragRididbody.TryGetComponent<AngularSpringJoint>(out var joint))
 					joint.SetOnlyAccelerate();
 				
 				_dragObject = null;
+				_dragRididbody = null;
 			}
 
 			if (_dragObject != null)
 			{
-				var dragWorldPos = _dragObject.transform.TransformPoint(_localDragPoint);
+				var dragWorldPos = _dragObject.transform.position; // _dragObject.transform.TransformPoint(_localDragPoint);
 				var dragVector = dragWorldPos - mouseWorldPos;
 
 				_dragRididbody.AddForceAtPosition(-1 * dragVector * DragMultiplier, dragWorldPos);
