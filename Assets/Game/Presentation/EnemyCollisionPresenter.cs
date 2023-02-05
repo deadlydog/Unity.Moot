@@ -10,6 +10,7 @@ namespace Assets.Game.Presentation
 		public float HitForce = 1;
 		public float RagdollDelaySeconds = 0.3f;
 		public float DeathDisappearDelayInSeconds = 1.5f;
+		public float ChanceOfDeathScream = 0.25f;
 
 		private EnemyRagdoll _ragdoll;
 		private Rigidbody2D _rigidbody2d;
@@ -53,8 +54,11 @@ namespace Assets.Game.Presentation
 				.Timer(TimeSpan.FromSeconds(DeathDisappearDelayInSeconds))
 				.Subscribe(_ => Destroy(gameObject));
 
-			// Play death scream sound.
-			_enemyDeathAudio.PlayEnemyDeathScream();
+			// Too many screams are annoying.
+			if (UnityEngine.Random.Range(0f, 1f) < ChanceOfDeathScream)
+			{
+				_enemyDeathAudio.PlayEnemyDeathScream();
+			}
 		}
 	}
 }

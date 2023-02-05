@@ -7,7 +7,7 @@ public class EnemyDeathAudio : MonoBehaviour
 	public AudioSource AudioSource;
 	public AudioClip[] AudioClipArray;
 	AudioClip lastClip;
-	public float Volume = 0.5f;
+	public float Volume = 0.1f;
 	
 	public void PlayEnemyDeathScream()
 	{
