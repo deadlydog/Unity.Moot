@@ -13,6 +13,7 @@ namespace Assets.Game.Presentation
 		public float IntegralCoeff = 0.1f;
 
 		private AngularSpringJoint _parentJoint;
+		private AngularSpringJoint _directChild;
 		private List<AngularSpringJoint> _childBranches;
 
 		private float _forwardForceMultiplier = 1.0f;
@@ -39,7 +40,10 @@ namespace Assets.Game.Presentation
 			if (transform.parent != null)
 			{
 				if (transform.parent.TryGetComponent<AngularSpringJoint>(out var joint))
+				{
 					_parentJoint = joint;
+					_parentJoint._directChild = this;
+				}
 				else if (transform.parent.TryGetComponent<BranchPresenter>(out var presenter)
 					&& presenter.transform.parent != null
 					&& presenter.transform.parent.TryGetComponent<AngularSpringJoint>(out var presenterJoint))
@@ -106,16 +110,16 @@ namespace Assets.Game.Presentation
 			while (root._parentJoint != null)
 				root = root._parentJoint;
 
-			root.SetChildrenToOnlyAccelerate();
+			root.SetTrunkToOnlyAccelerate();
 		}
 
-		private void SetChildrenToOnlyAccelerate()
+		private void SetTrunkToOnlyAccelerate()
 		{
 			_forwardForceMultiplier = 2.0f;
 			_counterForceMultiplier = 0.0f;
 
-			foreach (var child in _childBranches)
-				child.SetChildrenToOnlyAccelerate();
+			if (_directChild != null)
+				_directChild.SetTrunkToOnlyAccelerate();
 		}
 
 		public Vector2 RotateVector(Vector2 vector, float degrees) 
