@@ -23,7 +23,10 @@ namespace Assets.Game.Presentation
 		// Start is called before the first frame update
 		void Start()
 		{
-			RootlingsCommands.Register(_id);
+			Observable
+				.NextFrame()
+				.Subscribe(_ => RootlingsCommands.Register(_id))
+				.AddTo(this);
 
 			RootlingsEvents
 				.OfType<RootlingsEvent, RootlingsEvent.Stolen>()
