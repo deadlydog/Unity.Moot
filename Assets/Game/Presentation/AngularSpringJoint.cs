@@ -6,10 +6,15 @@ namespace Assets.Game.Presentation
 	{
 		public float TorqueCoefficient = 1;
 
+		public float DifferentialCoeff = 1f;
+		public float IntegralCoeff = 0.1f;
+
 		private Rigidbody2D _rigidbody2d;
 		private float _originalRotation;
 		private Rigidbody2D _connectedRigidbody2d;
 		private float _originalRotationDiff;
+
+		private float _integral;
 
 		void Awake()
 		{
@@ -33,8 +38,14 @@ namespace Assets.Game.Presentation
 				rotationDiff += 360;
 			if (rotationDiff > 180)
 				rotationDiff -= 360;
+
+			_integral += rotationDiff;
+
+			var torque = TorqueCoefficient * -rotationDiff
+				+ IntegralCoeff * _integral
+				+ DifferentialCoeff * _rigidbody2d.angularVelocity;
 			
-			_rigidbody2d.AddTorque(TorqueCoefficient * -rotationDiff);
+			_rigidbody2d.AddTorque(torque);
 		}
 	}
 }

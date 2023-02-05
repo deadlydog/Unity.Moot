@@ -6,6 +6,8 @@ namespace Assets.Game.Presentation
 	public record BranchParameters
 	{
 		public float TorqueCoefficient;
+		public float IntegralCoefficient;
+		public float DifferentialCoefficient;
 		public float Mass;
 		public float AngularDrag;
 		public float MassPropagation;
