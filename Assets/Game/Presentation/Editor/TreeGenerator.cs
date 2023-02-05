@@ -20,14 +20,14 @@ namespace Assets.Game.Presentation.Editor
 				var trunkPresenter = (TrunkPresenter)target;
 				var trunk = trunkPresenter.gameObject;
 
-				BuildTree(trunk, trunkPresenter.InitialParameters);
+				BuildTree(trunk, trunkPresenter.InitialParameters, true);
 
 				EditorUtility.SetDirty(target);
 				EditorSceneManager.MarkSceneDirty(trunk.scene);
 			}
 		}
 
-		private void BuildTree(GameObject trunk, BranchParameters branchParams)
+		private void BuildTree(GameObject trunk, BranchParameters branchParams, bool isTrunk)
 		{
 			Debug.Log($"Build for {trunk}");
 
@@ -37,15 +37,18 @@ namespace Assets.Game.Presentation.Editor
 
 			var spriteSkin = trunk.GetComponent<SpriteSkin>();
 
+			bool firstPair = true;
 			foreach (var (parentBone, bone) in spriteSkin.boneTransforms.Pairwise())
 			{
-				BuildBranchBone(parentBone.gameObject, bone.gameObject, branchParams);
-
+				BuildBranchBone(parentBone.gameObject, bone.gameObject, branchParams, isTrunk, firstPair);
+				
+				firstPair = false;
+				
 				branchParams = branchParams.Propagate();
 			}
 		}
 
-		private void BuildBranchBone(GameObject parentBone, GameObject branchBone, BranchParameters branchParams)
+		private void BuildBranchBone(GameObject parentBone, GameObject branchBone, BranchParameters branchParams, bool isTrunk, bool isFirstBone)
 		{
 			var rigidbody = branchBone.GetOrAddComponent<Rigidbody2D>();
 			rigidbody.bodyType = RigidbodyType2D.Dynamic;
@@ -61,17 +64,23 @@ namespace Assets.Game.Presentation.Editor
 			springJoint.TorqueCoefficient = branchParams.TorqueCoefficient;
 			springJoint.DifferentialCoeff = branchParams.DifferentialCoefficient;
 			springJoint.IntegralCoeff = branchParams.IntegralCoefficient;
+			springJoint.ForwardForceMultiplier = branchParams.ForwardForceMultiplier;
+			springJoint.ForwardForceFadeTime = branchParams.ForwardForceFadeTime;
+			springJoint.CounterForceReturnTime = branchParams.CounterForceReturnTime;
 
-			var collider = branchBone.GetOrAddComponent<CapsuleCollider2D>();
-			collider.direction = CapsuleDirection2D.Horizontal;
-			collider.size = new Vector2(1, 0.4f);
-			collider.offset = new Vector2(0.4f, 0);
+			if (!isFirstBone)
+			{
+				var collider = branchBone.GetOrAddComponent<CapsuleCollider2D>();
+				collider.direction = CapsuleDirection2D.Horizontal;
+				collider.size = new Vector2(1, 0.4f);
+				collider.offset = new Vector2(0.4f, 0);
+			}
 
 			foreach (Transform childTransform in branchBone.transform)
 			{
 				var spriteSkin = childTransform.GetComponent<SpriteSkin>();
 				if (spriteSkin != null)
-					BuildTree(childTransform.gameObject, branchParams.ScaleMass(childTransform.localScale.x));
+					BuildTree(childTransform.gameObject, branchParams.ScaleMass(childTransform.localScale.x), isTrunk);
 			}
 		}
 

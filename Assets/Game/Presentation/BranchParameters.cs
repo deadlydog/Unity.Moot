@@ -13,6 +13,10 @@ namespace Assets.Game.Presentation
 		public float MassPropagation;
 		public float AngularDragPropagation;
 
+		public float ForwardForceMultiplier = 2.0f;
+		public float ForwardForceFadeTime = 1.0f;
+		public float CounterForceReturnTime = 1.0f;
+
 		public BranchParameters Propagate()
 			=> this with
 			{

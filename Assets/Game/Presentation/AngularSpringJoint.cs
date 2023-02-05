@@ -12,6 +12,11 @@ namespace Assets.Game.Presentation
 		public float DifferentialCoeff = 1f;
 		public float IntegralCoeff = 0.1f;
 
+		public float ForwardForceMultiplier = 2.0f;
+
+		public float ForwardForceFadeTime = 1.0f;
+		public float CounterForceReturnTime = 1.0f;
+
 		private AngularSpringJoint _parentJoint;
 		private AngularSpringJoint _directChild;
 		private List<AngularSpringJoint> _childBranches;
@@ -80,11 +85,11 @@ namespace Assets.Game.Presentation
 					
 			ApplyTorque(targetTorque * multiplier, transform.position);
 
-			_forwardForceMultiplier -= Time.fixedDeltaTime * 1.0f;
+			_forwardForceMultiplier -= Time.fixedDeltaTime * (ForwardForceMultiplier - 1) / ForwardForceFadeTime;
 			if (_forwardForceMultiplier < 1.0f)
 				_forwardForceMultiplier = 1.0f;
 
-			_counterForceMultiplier += Time.fixedDeltaTime * 1.0f;
+			_counterForceMultiplier += Time.fixedDeltaTime / CounterForceReturnTime;
 			if (_counterForceMultiplier > 1.0f)
 				_counterForceMultiplier = 1.0f;
 		}
@@ -100,7 +105,7 @@ namespace Assets.Game.Presentation
 			_rigidbody2d.AddForce(forceDirection * Mathf.Abs(targetTorque) * 4);
 
 			foreach (var child in _childBranches)
-				child.ApplyTorque(targetTorque * 0.3f, origin);
+				child.ApplyTorque(targetTorque * 0.2f, origin);
 		}
 
 		public void SetOnlyAccelerate()
@@ -115,7 +120,7 @@ namespace Assets.Game.Presentation
 
 		private void SetTrunkToOnlyAccelerate()
 		{
-			_forwardForceMultiplier = 2.0f;
+			_forwardForceMultiplier = ForwardForceMultiplier;
 			_counterForceMultiplier = 0.0f;
 
 			if (_directChild != null)
