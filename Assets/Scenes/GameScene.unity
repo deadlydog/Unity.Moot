@@ -668,6 +668,50 @@ MonoBehaviour:
     EnemyRagdollLimbMass: 0.01
     EnemySpeed: 100
     EnemyScale: 0.4
+--- !u!1 &1058596879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1613750999054639308, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+  m_PrefabInstance: {fileID: 1448927599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1058596881 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1712142871855376421, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+  m_PrefabInstance: {fileID: 1448927599}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058596879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1058596883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058596879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e8397d5355df4548987c06cd2279a03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scoretext: {fileID: 1058596881}
+--- !u!114 &1058596884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058596879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &1448927599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -675,6 +719,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5036129490025785814, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+      propertyPath: m_fontSize
+      value: 62.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036129490025785814, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6b78dd4c889bc5c42b2a0cc4c93fd000, type: 2}
+    - target: {fileID: 5036129490025785814, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -7757317241769470209, guid: 6b78dd4c889bc5c42b2a0cc4c93fd000, type: 2}
     - target: {fileID: 5036129490035748505, guid: 21a823fcc6058734ebcbb0fbe0e5a3bb, type: 3}
       propertyPath: m_Pivot.x
       value: 0
