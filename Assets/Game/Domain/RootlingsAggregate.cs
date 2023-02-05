@@ -10,6 +10,8 @@ namespace Assets.Game.Domain
 		private readonly Subject<RootlingsEvent> _events = new();
 		private readonly List<RootlingIdentifier> _rootlings = new();
 
+		private int _stolenCount;
+
 		public IDisposable Subscribe(IObserver<RootlingsEvent> observer) 
 			=> _events.Subscribe(observer);
 
@@ -21,7 +23,12 @@ namespace Assets.Game.Domain
 
 		public void Steal(EnemyIdentifier enemyId, RootlingIdentifier rootlingId)
 		{
-			_events.OnNext(new RootlingsEvent.Stolen(enemyId, rootlingId));
+			_stolenCount++;
+
+			_events.OnNext(new RootlingsEvent.Stolen(enemyId, rootlingId, _rootlings.Count - _stolenCount));
+			
+			if (_stolenCount == _rootlings.Count)
+				_events.OnNext(new RootlingsEvent.AllStolen());
 		}
 	}
 
@@ -37,9 +44,15 @@ namespace Assets.Game.Domain
 
 	public abstract record RootlingsEvent
 	{
-		public record Stolen(EnemyIdentifier EnemyId, RootlingIdentifier RootlingId) : RootlingsEvent;
+		public record Stolen(
+			EnemyIdentifier EnemyId, 
+			RootlingIdentifier RootlingId,
+			int RemainingCount
+		) : RootlingsEvent;
 
 		public record Registered(RootlingIdentifier RootlingId, int RootlingsCount) : RootlingsEvent;
+
+		public record AllStolen : RootlingsEvent;
 	}
 
 	public record RootlingIdentifier(int Value)
