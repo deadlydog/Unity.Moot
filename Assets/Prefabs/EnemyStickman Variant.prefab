@@ -1258,6 +1258,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4418035617817758629, guid: 15fb5db1d0d4997419a7fc135f5c70eb, type: 3}
   m_PrefabInstance: {fileID: 8371984385680415782}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &5296022664242272132 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4418035617817758626, guid: 15fb5db1d0d4997419a7fc135f5c70eb, type: 3}
+  m_PrefabInstance: {fileID: 8371984385680415782}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5296022664242272134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4418035617817758624, guid: 15fb5db1d0d4997419a7fc135f5c70eb, type: 3}
@@ -1527,6 +1532,7 @@ MonoBehaviour:
   enemyRigidbody: {fileID: 1810433036}
   direction: {x: -1, y: 0}
   RightMoveLayer: 9
+  spriteRenderer: {fileID: 5296022664242272132}
 --- !u!114 &1810433029
 MonoBehaviour:
   m_ObjectHideFlags: 0

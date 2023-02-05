@@ -10,6 +10,7 @@ namespace Assets.Game.Presentation
 		public Rigidbody2D enemyRigidbody;
 		public Vector2 direction = Vector2.left;
 		public int RightMoveLayer;
+		public SpriteRenderer spriteRenderer;
 
 		[Inject]
 		public EnemyParameters Parameters { private get; set; }
@@ -21,6 +22,7 @@ namespace Assets.Game.Presentation
 		{
 			enemyRigidbody.mass = Parameters.EnemyMass;
 			transform.localScale = new Vector3(Parameters.EnemyScale, Parameters.EnemyScale, 1.0f);
+			spriteRenderer.color = PickARandomColor();
 			
 			RootlingsEvents
 				.OfType<RootlingsEvent, RootlingsEvent.Stolen>()
@@ -42,6 +44,11 @@ namespace Assets.Game.Presentation
 		private void FixedUpdate()
 		{
 			enemyRigidbody.velocity = direction * Parameters.EnemySpeed * Time.fixedDeltaTime;
+		}
+		
+		private Color PickARandomColor()
+		{
+			return Random.ColorHSV();
 		}
 
 		public EnemyIdentifier Id => Parameters.EnemyId;
