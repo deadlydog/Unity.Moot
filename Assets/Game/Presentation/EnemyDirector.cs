@@ -31,10 +31,19 @@ namespace Assets.Game.Presentation
 
 		private void Start()
 		{
+			EnemyEvents
+				.OfType<EnemyEvent, EnemyEvent.SpawningStarted>()
+				.Subscribe(_ => StartSpawning())
+				.AddTo(this);
+		}
+
+		private void StartSpawning()
+		{
 			var delayTimeSpan = TimeSpan.FromSeconds(SpawnDelaySeconds);
 
 			Observable.Timer(TimeSpan.Zero, delayTimeSpan)
-				.Subscribe(_ => Invoke(nameof(SpawnAnEnemy), UnityEngine.Random.Range(MinSpawnDelayOffsetSeconds, MaxSpawnDalayOffsetSeconds)))
+				.Subscribe(_ => Invoke(nameof(SpawnAnEnemy),
+					UnityEngine.Random.Range(MinSpawnDelayOffsetSeconds, MaxSpawnDalayOffsetSeconds)))
 				.AddTo(this);
 		}
 
