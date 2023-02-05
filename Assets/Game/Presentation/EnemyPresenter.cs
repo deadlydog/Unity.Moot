@@ -14,17 +14,14 @@ namespace Assets.Game.Presentation
 		[Inject]
 		public EnemyParameters Parameters { private get; set; }
 
-<<<<<<< HEAD
-		private void Start()
-		{
-			enemyRigidbody.mass = Parameters.EnemyMass;
-			transform.localScale = new Vector3(Parameters.EnemyScale, Parameters.EnemyScale, 1.0f);
-=======
 		[Inject]
 		public IRootlingsEvents RootlingsEvents { private get; set; }
 
 		void Start()
 		{
+			enemyRigidbody.mass = Parameters.EnemyMass;
+			transform.localScale = new Vector3(Parameters.EnemyScale, Parameters.EnemyScale, 1.0f);
+			
 			RootlingsEvents
 				.OfType<RootlingsEvent, RootlingsEvent.Stolen>()
 				.Where(stolen => stolen.EnemyId == Parameters.EnemyId)
@@ -40,7 +37,6 @@ namespace Assets.Game.Presentation
 					transform.gameObject.layer = RightMoveLayer;
 				})
 				.AddTo(this);
->>>>>>> cb8deed (Enemies steal rootlings)
 		}
 
 		private void FixedUpdate()

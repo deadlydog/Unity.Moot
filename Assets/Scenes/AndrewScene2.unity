@@ -362,7 +362,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a59d2c07d4f47c0bbe64344e81038b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnDelaySeconds: 3
+  SpawnDelaySeconds: 1
+  EnemySettings:
+    EnemyMass: 0.1
+    EnemyRagdollLimbMass: 0.01
+    EnemySpeed: 100
+    EnemyScale: 0.4
 --- !u!1 &1138950169
 GameObject:
   m_ObjectHideFlags: 0
