@@ -27,7 +27,7 @@ public class EnemyRagdoll : MonoBehaviour
 		RagdollOff();
 
 		foreach (var body in rigidBodies)
-			body.mass = 0.1f;
+			body.mass = 0.01f;
 	}
 
 	public void RagdollOn() => ToggleRagdoll(true);
