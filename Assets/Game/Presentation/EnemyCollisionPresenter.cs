@@ -39,7 +39,8 @@ namespace Assets.Game.Presentation
 		{
 			if (collision.otherCollider.IsTouchingLayers(HitLayerMask.value))
 			{
-				TriggerEnemyDeath(collision);
+				if (collision.contacts[0].relativeVelocity.magnitude > 10)
+					TriggerEnemyDeath(collision);
 			}
 		}
 
@@ -57,8 +58,10 @@ namespace Assets.Game.Presentation
 
 			var hitDir = transform.position - collision.transform.position;
 
+			Debug.Log(collision.contacts[0].relativeVelocity);
+
 			_rigidbody2d.AddForceAtPosition(
-				hitDir.normalized * HitForce,
+				collision.contacts[0].relativeVelocity * HitForce,
 				collision.GetContact(0).point
 			);
 			

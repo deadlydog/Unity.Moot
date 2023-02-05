@@ -664,7 +664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnDelaySeconds: 1
   EnemySettings:
-    EnemyMass: 0.005
+    EnemyMass: 0.05
     EnemyRagdollLimbMass: 0.05
     EnemySpeed: 100
     EnemyScale: 0.4

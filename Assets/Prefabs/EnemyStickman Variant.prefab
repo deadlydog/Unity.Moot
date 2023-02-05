@@ -1668,8 +1668,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HitLayerMask:
     serializedVersion: 2
-    m_Bits: 64
-  HitForce: 500
+    m_Bits: 2112
+  HitForce: 5
   RagdollDelaySeconds: 0
   DeathDisappearDelayInSeconds: 1.5
   ChanceOfDeathScream: 0.25

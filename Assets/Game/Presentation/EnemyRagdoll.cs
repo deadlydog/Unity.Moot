@@ -39,6 +39,9 @@ public class EnemyRagdoll : MonoBehaviour
 	public void RagdollOff() => ToggleRagdoll(false);
 	private void ToggleRagdoll(bool ragdollOn)
 	{
+		if (ragdollOn)
+			SetLayer(gameObject, 11);
+
 		animator.enabled = !ragdollOn;
 		nonRagdollCollider.enabled = !ragdollOn;
 
@@ -61,5 +64,13 @@ public class EnemyRagdoll : MonoBehaviour
 			limbSolver.weight = ragdollOn ? 0 : 1;
 			// limbSolver.enabled = !ragdollOn;
 		}
+	}
+
+	private static void SetLayer(GameObject gameObject, int layer)
+	{
+		gameObject.layer = layer;
+		
+		for (int i = 0; i < gameObject.transform.childCount; ++i)
+			SetLayer(gameObject.transform.GetChild(i).gameObject, layer);
 	}
 }
