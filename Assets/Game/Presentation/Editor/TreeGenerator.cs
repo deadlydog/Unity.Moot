@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
@@ -15,7 +16,13 @@ namespace Assets.Game.Presentation.Editor
 			if (GUILayout.Button("Build"))
 			{
 				Debug.Log($"Target = {target}, serializedObject = {serializedObject}");
-				BuildTree((target as TrunkPresenter).gameObject);
+
+				var trunk = (target as TrunkPresenter).gameObject;
+
+				BuildTree(trunk);
+
+				EditorUtility.SetDirty(target);
+				EditorSceneManager.MarkSceneDirty(trunk.scene);
 			}
 		}
 
