@@ -140,9 +140,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.25721243
+  m_Mass: 0.21869996
   m_LinearDrag: 0
-  m_AngularDrag: 500
+  m_AngularDrag: 1687.5
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -178,6 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &63844594
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -219,9 +221,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.27074993
+  m_Mass: 0.24299996
   m_LinearDrag: 0
-  m_AngularDrag: 500
+  m_AngularDrag: 1125
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -257,6 +259,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &77925590
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -298,9 +302,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.25721243
+  m_Mass: 0.21869996
   m_LinearDrag: 0
-  m_AngularDrag: 500
+  m_AngularDrag: 1687.5
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -320,6 +324,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &294505159
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -508,9 +514,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.45125
+  m_Mass: 0.40499997
   m_LinearDrag: 0
-  m_AngularDrag: 500
+  m_AngularDrag: 1125
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -546,6 +552,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &396821585
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -587,9 +595,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.28499994
+  m_Mass: 0.26999995
   m_LinearDrag: 0
-  m_AngularDrag: 500
+  m_AngularDrag: 750
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -625,6 +633,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &442079704
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -750,9 +760,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.28499994
+  m_Mass: 0.26999995
   m_LinearDrag: 0
-  m_AngularDrag: 500
+  m_AngularDrag: 750
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -772,6 +782,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &637813269
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -1091,7 +1103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a59d2c07d4f47c0bbe64344e81038b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnDelaySeconds: 2
+  SpawnDelaySeconds: 10
 --- !u!1 &1398394871 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5554121252408098739, guid: 1b7cf748bdaaef34a8dd85b3babd73b7, type: 3}
@@ -1131,6 +1143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &1398394875
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -1188,9 +1202,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.27074993
+  m_Mass: 0.24299996
   m_LinearDrag: 0
-  m_AngularDrag: 500
+  m_AngularDrag: 1125
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -1210,6 +1224,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &1498240641
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -1267,9 +1283,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.2443518
+  m_Mass: 0.19682996
   m_LinearDrag: 0
-  m_AngularDrag: 500
+  m_AngularDrag: 2531.25
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -1305,6 +1321,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &1545248879
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -1369,10 +1387,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialParameters:
     TorqueCoefficient: 10
+    IntegralCoefficient: -0.01
+    DifferentialCoefficient: -0.1
     Mass: 0.5
     AngularDrag: 500
-    MassPropagation: 0.95
-    AngularDragPropagation: 1
+    MassPropagation: 0.9
+    AngularDragPropagation: 1.5
 --- !u!1 &1703603656 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2034540325413489086, guid: 058d0d52cb2aae447b00eb35b107bea3, type: 3}
@@ -1428,6 +1448,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &1703603660
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -1474,9 +1496,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.475
+  m_Mass: 0.45
   m_LinearDrag: 0
-  m_AngularDrag: 500
+  m_AngularDrag: 750
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -1512,6 +1534,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &1710576757
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -1553,9 +1577,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.42868748
+  m_Mass: 0.36449996
   m_LinearDrag: 0
-  m_AngularDrag: 500
+  m_AngularDrag: 1687.5
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -1591,6 +1615,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &1728694685
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -1649,6 +1675,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &1777148497
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -1685,9 +1713,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.40725312
+  m_Mass: 0.32804996
   m_LinearDrag: 0
-  m_AngularDrag: 500
+  m_AngularDrag: 2531.25
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -1791,6 +1819,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &1910540570
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -1843,9 +1873,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.2443518
+  m_Mass: 0.19682996
   m_LinearDrag: 0
-  m_AngularDrag: 500
+  m_AngularDrag: 2531.25
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -1933,6 +1963,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TorqueCoefficient: 10
+  DifferentialCoeff: -0.1
+  IntegralCoeff: -0.01
 --- !u!233 &1964867557
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -1969,9 +2001,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.23213421
+  m_Mass: 0.17714696
   m_LinearDrag: 0
-  m_AngularDrag: 500
+  m_AngularDrag: 3796.875
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 1

@@ -59,6 +59,8 @@ namespace Assets.Game.Presentation.Editor
 
 			var springJoint = branchBone.GetOrAddComponent<AngularSpringJoint>();
 			springJoint.TorqueCoefficient = branchParams.TorqueCoefficient;
+			springJoint.DifferentialCoeff = branchParams.DifferentialCoefficient;
+			springJoint.IntegralCoeff = branchParams.IntegralCoefficient;
 
 			var collider = branchBone.GetOrAddComponent<CapsuleCollider2D>();
 			collider.direction = CapsuleDirection2D.Horizontal;
