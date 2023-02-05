@@ -1,4 +1,5 @@
 using Assets.Game.Domain;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -11,6 +12,9 @@ namespace Assets.Game.Presentation
 		[Inject]
 		public IRootlingsCommands RootlingsCommands { private get; set; }
 
+		[Inject]
+		public IRootlingsEvents RootlingsEvents { private get; set; }
+
 		void Awake()
 		{
 			_id = RootlingIdentifier.Create();
@@ -20,12 +24,16 @@ namespace Assets.Game.Presentation
 		void Start()
 		{
 			RootlingsCommands.Register(_id);
+
+			RootlingsEvents
+				.OfType<RootlingsEvent, RootlingsEvent.Stolen>()
+				.Where(stolen => stolen.RootlingId == _id)
+				.Subscribe(_ => Destroy(gameObject))
+				.AddTo(this);
 		}
 		
 		void OnTriggerEnter2D(Collider2D otherCollider)
 		{
-			Debug.Log("Rootling collision");
-
 			var enemy = otherCollider.GetComponent<IHaveEnemyId>();
 
 			if (enemy != null)
@@ -34,10 +42,5 @@ namespace Assets.Game.Presentation
 				RootlingsCommands.Steal(enemy.Id, _id);
 			}
 		}
-	}
-
-	public interface IHaveEnemyId
-	{
-		EnemyIdentifier Id { get; }
 	}
 }
