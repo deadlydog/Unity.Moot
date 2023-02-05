@@ -1,74 +1,39 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 using Zenject;
+using UnityEngine;
 
 namespace Assets.Game.Domain
 {
     public class EnemyAggregate : IEnemyCommands, IEnemyEvents, IDisposable
     {
         private readonly Subject<EnemyEvent> _events = new();
+        private readonly ISet<EnemyIdentifier> _enemies = new HashSet<EnemyIdentifier>();
         public void Dispose()
             => _events.Dispose();
 
         public IDisposable Subscribe(IObserver<EnemyEvent> observer)
             => _events.Subscribe(observer);
-    }
 
-    public interface IEnemyCommands
-    {
-    }
-
-    public interface IEnemyEvents : IObservable<EnemyEvent>
-    {
-    }
-
-    public abstract record EnemyEvent
-    {
-        public record EnemySpawned : EnemyEvent
+        public void SpawnEnemy(Vector2 position)
         {
-            public EnemyIdentifier EnemyId { get; }
-        }
-    }
-
-    public class EnemyIdentifier : IEquatable<EnemyIdentifier>
-    {
-        private readonly Guid _value;
-
-        private EnemyIdentifier(Guid value)
-        {
-            _value = value;
+            var enemyId = new EnemyIdentifier();
+            _enemies.Add(enemyId);
+            _events.OnNext(new EnemyEvent.EnemySpawned(enemyId, new EnemyConfig(position)));
         }
 
-        public EnemyIdentifier() : this(Guid.NewGuid()) {}
-        
-        public bool Equals(EnemyIdentifier other)
+        public void KillEnemy(EnemyIdentifier enemyId)
         {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return _value.Equals(other._value);
-        }
+            if (!_enemies.Remove(enemyId))
+                throw new ArgumentException($"{enemyId} doesn't exist");
+            
+            _events.OnNext(new EnemyEvent.EnemyKilled(enemyId));
 
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((EnemyIdentifier)obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return _value.GetHashCode();
-        }
-
-        public static bool operator ==(EnemyIdentifier left, EnemyIdentifier right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(EnemyIdentifier left, EnemyIdentifier right)
-        {
-            return !Equals(left, right);
+            if (_enemies.Any()) return;
+            
+            _events.OnNext(new EnemyEvent.AllEnemiesKilled());
         }
     }
 }
