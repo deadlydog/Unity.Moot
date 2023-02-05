@@ -77,6 +77,11 @@ namespace Assets.Game.Presentation
 
 			_integral -= rotationDiff;
 
+			if (_integral < -1000)
+				_integral = -1000;
+			else if (_integral > 1000)
+				_integral = 1000;
+
 			var targetTorque = TorqueCoefficient * rotationDiff
 				+ IntegralCoeff * _integral
 				+ DifferentialCoeff * _rigidbody2d.angularVelocity;
