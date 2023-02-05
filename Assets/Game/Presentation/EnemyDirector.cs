@@ -8,7 +8,18 @@ namespace Assets.Game.Presentation
 {
 	public class EnemyDirector : MonoBehaviour
 	{
+		[Serializable]
+		public class EnemyParameters
+		{
+			public float EnemyMass = 1.0f;
+			public float EnemyRagdollLimbMass = 0.1f;
+			public float EnemySpeed = 100.0f;
+			public float EnemyScale = 1.0f;
+		}
+
 		public float SpawnDelaySeconds = 2.0f;
+
+		public EnemyParameters EnemySettings;
 
 		[Inject]
 		public IEnemyCommands EnemyCommands { private get; set; }
@@ -26,7 +37,7 @@ namespace Assets.Game.Presentation
 		}
 
 		public void SpawnAnEnemy()
-			=> EnemyCommands.SpawnEnemy(transform.position);
+			=> EnemyCommands.SpawnEnemy(transform.position, new IEnemyCommands.EnemyParameters(EnemySettings.EnemyMass, EnemySettings.EnemyRagdollLimbMass, EnemySettings.EnemySpeed, EnemySettings.EnemyScale));
 	}
 
 }

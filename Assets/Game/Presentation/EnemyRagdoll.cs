@@ -1,3 +1,4 @@
+using Assets.Game.Domain;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,6 +6,7 @@ using TMPro;
 using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.U2D.IK;
+using Zenject;
 
 public class EnemyRagdoll : MonoBehaviour
 {
@@ -17,6 +19,9 @@ public class EnemyRagdoll : MonoBehaviour
 	
 	private Rigidbody2D _rigidbody2d;
 
+	[Inject]
+	public EnemyParameters Parameters { private get; set; }
+
 	void Awake()
 	{
 		_rigidbody2d = GetComponent<Rigidbody2D>();
@@ -27,7 +32,7 @@ public class EnemyRagdoll : MonoBehaviour
 		RagdollOff();
 
 		foreach (var body in rigidBodies)
-			body.mass = 0.01f;
+			body.mass = Parameters.EnemyRagdollLimbMass;
 	}
 
 	public void RagdollOn() => ToggleRagdoll(true);

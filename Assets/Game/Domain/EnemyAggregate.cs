@@ -17,11 +17,11 @@ namespace Assets.Game.Domain
         public IDisposable Subscribe(IObserver<EnemyEvent> observer)
             => _events.Subscribe(observer);
 
-        public void SpawnEnemy(Vector2 position)
+        public void SpawnEnemy(Vector2 position, IEnemyCommands.EnemyParameters enemyParameters)
         {
             var enemyId = EnemyIdentifier.Create();
             _enemies.Add(enemyId);
-            _events.OnNext(new EnemyEvent.EnemySpawned(enemyId, new EnemyConfig(position)));
+            _events.OnNext(new EnemyEvent.EnemySpawned(enemyId, new EnemyConfig(position, enemyParameters.EnemyMass, enemyParameters.EnemyRagdollLimbMass, enemyParameters.EnemySpeed, enemyParameters.EnemyScale)));
         }
 
         public void KillEnemy(EnemyIdentifier enemyId)

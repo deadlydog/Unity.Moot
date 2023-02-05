@@ -1134,7 +1134,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 7
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3a9dd8d8419be864496316ebb38becda, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -1283,7 +1283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e54208aaa7745719e21fd5af8836bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 200
   enemyRigidbody: {fileID: 1810433036}
   direction: {x: -1, y: 0}
 --- !u!114 &1810433029

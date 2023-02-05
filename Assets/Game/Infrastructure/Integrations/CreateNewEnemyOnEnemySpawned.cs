@@ -14,7 +14,8 @@ namespace Assets.Game.Infrastructure.Integrations
             _disposable = enemyEvents
                 .OfType<EnemyEvent, EnemyEvent.EnemySpawned>()
                 .Subscribe(enemySpawned =>
-                    enemyFactory.Create(new EnemyParameters(enemySpawned.EnemyId, enemySpawned.EnemyConfig.Position)));
+                    enemyFactory.Create(new EnemyParameters(enemySpawned.EnemyId, enemySpawned.EnemyConfig.Position, enemySpawned.EnemyConfig.EnemyMass, enemySpawned.EnemyConfig.EnemyRagdollLimbMass, enemySpawned.EnemyConfig.EnemySpeed, enemySpawned.EnemyConfig.EnemyScale))
+				);
         }
         public void Dispose()
         {

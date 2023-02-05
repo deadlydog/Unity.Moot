@@ -2,25 +2,7 @@
 
 namespace Assets.Game.Domain
 {
-    public record EnemyConfig
-    {
-        public Vector2 Position { get; }
+    public record EnemyConfig(Vector2 Position, float EnemyMass, float EnemyRagdollLimbMass, float EnemySpeed, float EnemyScale);
 
-        public EnemyConfig(Vector2 position)
-        {
-            Position = position;
-        }
-    }
-
-    public record EnemyParameters
-    {
-        public EnemyParameters(EnemyIdentifier enemyId, Vector2 position)
-        {
-            EnemyId = enemyId;
-            Position = position;
-        }
-
-        public Vector2 Position { get; }
-        public EnemyIdentifier EnemyId { get; }
-    }
+    public record EnemyParameters(EnemyIdentifier EnemyId, Vector2 Position, float EnemyMass, float EnemyRagdollLimbMass, float EnemySpeed, float EnemyScale);
 }
