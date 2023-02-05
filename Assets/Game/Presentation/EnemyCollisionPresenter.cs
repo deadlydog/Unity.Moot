@@ -13,11 +13,15 @@ namespace Assets.Game.Presentation
 
 		private EnemyRagdoll _ragdoll;
 		private Rigidbody2D _rigidbody2d;
+		private EnemyDeathAudio _enemyDeathAudio;
+
+		private bool _isDead = false;
 
 		void Awake()
 		{
 			_ragdoll = GetComponent<EnemyRagdoll>();
 			_rigidbody2d = GetComponent<Rigidbody2D>();
+			_enemyDeathAudio = GetComponent<EnemyDeathAudio>();
 		}
 		
 		void OnCollisionEnter2D(Collision2D collision)
@@ -30,6 +34,10 @@ namespace Assets.Game.Presentation
 
 		public void TriggerEnemyDeath(Collision2D collision)
 		{
+			if (_isDead)
+				return;
+			_isDead = true;
+			
 			Observable
 					.Timer(TimeSpan.FromSeconds(RagdollDelaySeconds))
 					.Subscribe(_ => _ragdoll.RagdollOn());
@@ -46,7 +54,7 @@ namespace Assets.Game.Presentation
 				.Subscribe(_ => Destroy(gameObject));
 
 			// Play death scream sound.
-
+			_enemyDeathAudio.PlayEnemyDeathScream();
 		}
 	}
 }
