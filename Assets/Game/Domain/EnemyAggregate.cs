@@ -19,7 +19,7 @@ namespace Assets.Game.Domain
 
         public void SpawnEnemy(Vector2 position)
         {
-            var enemyId = new EnemyIdentifier();
+            var enemyId = EnemyIdentifier.Create();
             _enemies.Add(enemyId);
             _events.OnNext(new EnemyEvent.EnemySpawned(enemyId, new EnemyConfig(position)));
         }

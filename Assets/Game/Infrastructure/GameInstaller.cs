@@ -11,9 +11,11 @@ namespace Assets.Game.Infrastructure
 		public GameObject EnemyPrefab;
 		public override void InstallBindings()
 		{
-			Container.BindInterfacesTo<EnemyAggregate>().AsSingle().NonLazy();
+			Container.BindAggregate<EnemyAggregate>();
 			Container.BindPrefabFactory<EnemyParameters, EnemyFactory>(EnemyPrefab, EnemiesContainer);
 			Container.BindIntegration<CreateNewEnemyOnEnemySpawned>();
+
+			Container.BindAggregate<RootlingsAggregate>();
 		}
 	}
 }
