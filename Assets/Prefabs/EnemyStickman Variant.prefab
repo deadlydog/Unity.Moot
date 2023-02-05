@@ -1248,6 +1248,21 @@ MonoBehaviour:
     showGizmo: 1
   - color: {r: 0, g: 0, b: 1, a: 1}
     showGizmo: 1
+--- !u!114 &5087950249398069305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5296022664242272134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15845dc691212314fbe0760be7bb9a9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &5296022664428202755 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4418035619313235749, guid: 15fb5db1d0d4997419a7fc135f5c70eb, type: 3}
