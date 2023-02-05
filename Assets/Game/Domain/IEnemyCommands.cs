@@ -8,5 +8,6 @@ namespace Assets.Game.Domain
 
 		void SpawnEnemy(Vector2 position, EnemyParameters enemyParameters);
         void KillEnemy(EnemyIdentifier enemyId);
+        void StartSpawning();
     }
 }

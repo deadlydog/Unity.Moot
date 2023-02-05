@@ -7,5 +7,7 @@
 		public record EnemyKilled(EnemyIdentifier EnemyId) : EnemyEvent;
 
 		public record AllEnemiesKilled : EnemyEvent;
+
+		public record SpawningStarted : EnemyEvent;
 	}
 }
